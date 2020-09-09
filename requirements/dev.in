@@ -1,0 +1,6 @@
+-c pip-tools.txt
+-c base.txt
+-c deploy.txt
+
+# Everyone loves pytest!
+pytest~=5.4
