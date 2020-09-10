@@ -32,17 +32,17 @@ venv/bin/activate:
 requirements/base.txt: requirements/pip-tools.txt 
 requirements/base.txt: requirements/base.in
 requirements/base.txt: | .make.venv.pip-tools
-	${WITH_VENV} pip-compile requirements/base.in
+	${WITH_VENV} pip-compile --generate-hashes requirements/base.in
 
 requirements/deploy.txt: requirements/pip-tools.txt requirements/base.txt 
 requirements/deploy.txt: requirements/deploy.in
 requirements/deploy.txt: | .make.venv.pip-tools
-	${WITH_VENV} pip-compile requirements/deploy.in
+	${WITH_VENV} pip-compile --generate-hashes requirements/deploy.in
 
 requirements/dev.txt: requirements/pip-tools.txt requirements/base.txt requirements/deploy.txt 
 requirements/dev.txt: requirements/dev.in
 requirements/dev.txt: | .make.venv.pip-tools
-	${WITH_VENV} pip-compile requirements/dev.in
+	${WITH_VENV} pip-compile --generate-hashes requirements/dev.in
 	
 .PHONY: requirements
 requirements: requirements/base.txt requirements/dev.txt requirements/deploy.txt
