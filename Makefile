@@ -50,6 +50,12 @@ requirements: requirements/base.txt requirements/dev.txt requirements/deploy.txt
 
 # Entrypoints:
 
-.PHONY: test-unit
-test-unit: .make.venv.dev
+.PHONY: bash
+bash: .make.venv.dev
+	# Starting a new bash session with activated virtual environment.
+	@ ${WITH_VENV} bash --rcfile <(cat ~/.bashrc venv/bin/activate)
+
+.PHONY: test
+test: .make.venv.dev
 	@ ${WITH_VENV} python -c 'import pytest; print("pytest would run as version " + pytest.__version__ + "!")'
+
